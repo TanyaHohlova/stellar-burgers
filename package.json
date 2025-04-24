@@ -14,6 +14,7 @@
     "@types/uuid": "^9.0.1",
     "@zlden/react-developer-burger-ui-components": "^1.15.0",
     "clsx": "^2.0.0",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.3",
@@ -24,7 +25,6 @@
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4",
     "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
   "devDependencies": {
@@ -55,7 +55,8 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "cypress": "^13.6.1",
-    "dotenv-webpack": "^8.0.1",
+    "dotenv": "^16.4.7",
+    "dotenv-webpack": "^8.1.0",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
@@ -83,7 +84,8 @@
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "webpack-cli": "^6.0.1"
   },
   "scripts": {
     "start": "webpack serve --mode=development",
