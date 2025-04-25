@@ -1,8 +1,7 @@
-import { Preloader } from '@ui';
 import { JSX } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../services/store';
-import { getIsAuthChecked, getUser } from '../../services/user/slice';
+import { getUser } from '../../services/user/slice';
 
 type TProtectedProps = {
   onlyUnAuth?: boolean;

@@ -25,7 +25,7 @@ export const setUser = createAction<TUser | null, 'user/setUser'>(
   'user/setUser'
 );
 
-export const getNewUser = createAsyncThunk('user/getNewUser', async () =>
+export const getUserData = createAsyncThunk('user/getNewUser', async () =>
   getUserApi()
 );
 

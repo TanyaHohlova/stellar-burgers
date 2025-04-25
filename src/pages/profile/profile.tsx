@@ -2,7 +2,7 @@ import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { updateUser } from '../../services/profile/actions';
-import { getNewUser } from '../../services/user/actions';
+import { getUserData } from '../../services/user/actions';
 
 export const Profile: FC = () => {
   /** TODO: взять переменную из стора */
@@ -49,7 +49,7 @@ export const Profile: FC = () => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(updateUser(formValue)).then(() => {
-      dispatch(getNewUser());
+      dispatch(getUserData());
     });
   };
 

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 import {
-  getNewUser,
+  getUserData,
   loginUser,
   logout,
   registerUser,
@@ -13,13 +13,15 @@ type TUserState = {
   isAuthChecked: boolean;
   errorRegister: string | null;
   errorLogin: string | null;
+  isLoading: boolean;
 };
 
 export const initialState: TUserState = {
   user: null,
   isAuthChecked: false,
   errorRegister: null,
-  errorLogin: null
+  errorLogin: null,
+  isLoading: true
 };
 
 export const userInfoSlice = createSlice({
@@ -65,8 +67,15 @@ export const userInfoSlice = createSlice({
         state.isAuthChecked = true;
         state.errorLogin = action.error.message ?? 'UnKnown error';
       })
-      .addCase(getNewUser.fulfilled, (state, action) => {
+      .addCase(getUserData.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getUserData.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.isLoading = false;
+      })
+      .addCase(getUserData.rejected, (state, action) => {
+        state.isLoading = false;
       });
   }
 });

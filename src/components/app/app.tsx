@@ -15,20 +15,45 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 
 import { useAppDispatch } from '../../services/store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchIngredients } from '../../services/ingredients/actions';
 import { OnlyAuth, OnlyUnAuth } from '../protected-route/protected-route';
+import { getCookie } from '../../utils/cookie';
+import { getUserData } from '../../services/user/actions';
+import { Preloader } from '@ui';
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const backgroundLocation = location.state?.background;
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchIngredients());
   }, [dispatch]);
 
-  const location = useLocation();
-  const backgroundLocation = location.state?.background;
-  const navigate = useNavigate();
+  useEffect(() => {
+    const accessToken = getCookie('accessToken');
+    if (accessToken) {
+      dispatch(getUserData())
+        .then(() => setIsLoading(false))
+        .catch(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
+    }
+  }, [dispatch, navigate, location]);
+
+  if (isLoading) {
+    return (
+      <div className={styles.app}>
+        <Preloader />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.app}>
@@ -96,7 +121,7 @@ const App = () => {
                   navigate(-1);
                 }}
               >
-                <OrderInfo />
+                <OnlyUnAuth component={<OrderInfo />} />
               </Modal>
             }
           />
@@ -106,29 +131,3 @@ const App = () => {
   );
 };
 export default App;
-
-{
-  /* <Route path='/' element={<ConstructorPage />} />
-<Route path='/feed' element={<Feed />} />
-<Route path='/login' element={<OnlyUnAuth component={<Login />} />} />
-<Route
-  path='/register'
-  element={<OnlyUnAuth component={<Register />} />}
-/>
-<Route path='/register' element={<Register />} />
-
-<Route
-  path='/forgot-password'
-  element={<OnlyUnAuth component={<ForgotPassword />} />}
-/>
-<Route
-  path='/reset-password'
-  element={<OnlyUnAuth component={<ResetPassword />} />}
-/>
-<Route path='/profile' element={<OnlyAuth component={<Profile />} />} />
-<Route
-  path='/profile/orders'
-  element={<OnlyAuth component={<ProfileOrders />} />}
-/>
-<Route path='*' element={<NotFound404 />} /> */
-}
