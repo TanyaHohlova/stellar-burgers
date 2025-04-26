@@ -1,12 +1,25 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
 import {
   TypedUseSelectorHook,
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
+import { ingredientsReducer } from './ingredients/slice';
+import { burgerConstructorReducer } from './burgerConstructor/slice';
+import { serInfoReducer } from './user/slice';
+import { orderCreateReducer } from './orderCreate/slice';
+import { orderFeedReducer } from './orderFeed/slice';
+import { profilieReducer } from './profile/slice';
 
-const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
+const rootReducer = combineSlices({
+  combineSlices: ingredientsReducer,
+  burgerConstructor: burgerConstructorReducer,
+  user: serInfoReducer,
+  orderCreate: orderCreateReducer,
+  orderFeed: orderFeedReducer,
+  profile: profilieReducer
+});
 
 const store = configureStore({
   reducer: rootReducer,
@@ -14,10 +27,10 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
-
 export type AppDispatch = typeof store.dispatch;
 
-export const useDispatch: () => AppDispatch = () => dispatchHook();
-export const useSelector: TypedUseSelectorHook<RootState> = selectorHook;
+// Создаем кастомный хук
+export const useAppDispatch: () => AppDispatch = dispatchHook;
+export const useAppSelector: TypedUseSelectorHook<RootState> = selectorHook;
 
 export default store;
