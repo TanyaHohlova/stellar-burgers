@@ -13,7 +13,13 @@ export const OrderInfo: FC = () => {
     (state) => state.combineSlices.ingredients
   );
 
-  const orders = useAppSelector((state) => state.orderFeed.orders);
+  const orders = useAppSelector((state) => {
+    const oreders = state.orderFeed.orders;
+    if (oreders.length === 0) {
+      return state.profile.oredersUser;
+    }
+    return oreders;
+  });
   const order = orders.filter((item) => item.number === Number(number));
   const orderData = order[0];
 

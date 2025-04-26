@@ -121,7 +121,7 @@ const App = () => {
                   navigate(-1);
                 }}
               >
-                <OnlyUnAuth component={<OrderInfo />} />
+                <OnlyAuth component={<OrderInfo />} />
               </Modal>
             }
           />
