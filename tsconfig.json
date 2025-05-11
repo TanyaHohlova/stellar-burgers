@@ -36,7 +36,7 @@
       ],
       "exclude": [
         "node_modules",
-        "cypress/**/*.js", // Добавьте это!
-        "cypress/**/*.jsx" // Добавьте это, если используете JSX в JS файлах
+        "cypress/**/*.js", 
+        "cypress/**/*.jsx" 
       ]
 }
