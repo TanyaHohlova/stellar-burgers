@@ -17,7 +17,7 @@ const Protected = ({
 
   if (!onlyUnAuth && !user) {
     // для авторизованного, но не авторизован
-    return <Navigate to='/registr' state={{ from: location }} />;
+    return <Navigate to='/login' state={{ from: location }} />;
   }
 
   if (onlyUnAuth && user) {

@@ -15,7 +15,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
   const isConstructorPage = location.pathname === '/';
   const isFeedPage = location.pathname === '/feed';
 
-  const userPage = userName === undefined ? '/register' : '/profile';
+  const userPage = userName === undefined ? '/login' : '/profile';
 
   const isProfilePage = location.pathname === userPage;
 

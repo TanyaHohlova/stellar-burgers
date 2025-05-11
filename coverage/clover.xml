@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1746904755757" clover="3.2.0">
-  <project timestamp="1746904755757" name="All files">
+<coverage generated="1746971040784" clover="3.2.0">
+  <project timestamp="1746971040784" name="All files">
     <metrics statements="428" coveredstatements="426" conditionals="54" coveredconditionals="46" methods="23" coveredmethods="21" elements="505" coveredelements="493" complexity="0" loc="428" ncloc="428" packages="6" files="11" classes="11"/>
     <package name="burgerConstructor">
       <metrics statements="75" coveredstatements="75" conditionals="8" coveredconditionals="8" methods="6" coveredmethods="5"/>

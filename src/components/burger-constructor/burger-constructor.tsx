@@ -27,8 +27,12 @@ export const BurgerConstructor: FC = () => {
   const orderRequest = useAppSelector(
     (state) => state.orderCreate.orderRequest
   );
+
   useEffect(() => {
-    setIsOrderDetailsModalOpen(orderModalData);
+    if (orderModalData) {
+      dispatch(removeIngredientAll());
+      setIsOrderDetailsModalOpen(orderModalData);
+    }
     setIsOrderRequestModalOpen(orderRequest);
   }, [orderModalData, orderRequest]);
 
@@ -49,12 +53,11 @@ export const BurgerConstructor: FC = () => {
 
       dispatch(orderBurger(ingredientsOrder));
     } else {
-      navigate('/register');
+      navigate('/login');
     }
   };
 
   const closeOrderModal = () => {
-    dispatch(removeIngredientAll());
     dispatch(removeOrder());
     setIsOrderDetailsModalOpen(null);
     setIsOrderRequestModalOpen(false);

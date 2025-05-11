@@ -1,12 +1,18 @@
-import { FC, useMemo } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../services/store';
+import { useAppDispatch, useAppSelector } from '../../services/store';
+import { getFeeds } from '../../services/orderFeed/actions';
 
 export const OrderInfo: FC = () => {
   const { number } = useParams();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getFeeds());
+  }, [dispatch]);
 
   /** TODO: взять переменные orderData и ingredients из стора */
   const ingredients = useAppSelector(
